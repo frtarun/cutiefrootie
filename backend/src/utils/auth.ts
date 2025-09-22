@@ -4,7 +4,10 @@ import { Response, NextFunction } from 'express';
 import { User } from '../models';
 import { AuthRequest } from '../types';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required');
+}
 
 // Generate JWT token
 export const generateToken = (userId: string): string => {

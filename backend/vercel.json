@@ -3,7 +3,10 @@
     "builds": [
         {
             "src": "src/index.ts",
-            "use": "@vercel/node"
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": ["dist/**"]
+            }
         }
     ],
     "routes": [
@@ -11,5 +14,13 @@
             "src": "/(.*)",
             "dest": "src/index.ts"
         }
-    ]
+    ],
+    "env": {
+        "NODE_ENV": "production",
+        "MONGODB_URI": "@mongodb_uri",
+        "JWT_SECRET": "@jwt_secret",
+        "CLOUDINARY_CLOUD_NAME": "@cloudinary_cloud_name",
+        "CLOUDINARY_API_KEY": "@cloudinary_api_key",
+        "CLOUDINARY_API_SECRET": "@cloudinary_api_secret"
+    }
 }
